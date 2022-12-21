@@ -11,6 +11,7 @@ import { MilestonesComponent } from './components/milestones/milestones.componen
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { ReportingComponent } from './components/reporting/reporting.component';
 import { TfrComponent } from './components/tfr/tfr.component';
+import { TfrCreationComponent } from './components/tfr-creation/tfr-creation.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TfrComponent } from './components/tfr/tfr.component';
     MilestonesComponent,
     AlertsComponent,
     ReportingComponent,
-    TfrComponent
+    TfrComponent,
+    TfrCreationComponent
   ],
   imports: [
     BrowserModule,
