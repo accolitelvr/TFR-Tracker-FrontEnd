@@ -1,25 +1,20 @@
 <mat-card>
   <mat-card-title> Add Milestone </mat-card-title>
   <mat-card-content>
-    <mat-chip-list>
-      <mat-chip>Papadum</mat-chip>
-      <mat-chip>Naan</mat-chip>
-      <mat-chip>Dal</mat-chip>
-    </mat-chip-list>
 
-    <mat-card-content *ngFor="let milestone of milestones">
-      <app-chip></app-chip>
-    </mat-card-content>
+    <mat-chip-list #chipList>
+      <app-chip *ngFor="let milestone of milestones" [input]="milestone"></app-chip>
+    </mat-chip-list>
 
     <form [formGroup]="milestoneForm">
       <label for="first-name">Milestone Name: </label>
-      <input id="first-name" type="text" formControlName="firstName" />
+      <input id="first-name" type="text" formControlName="name" />
 
       <label for="last-name">Milestone Description: </label>
-      <input id="last-name" type="text" formControlName="lastName" />
+      <input id="last-name" type="text" formControlName="description" />
       <label for="first-name">Start Date: </label>
       <label for="last-name">End Date: </label>
-      <input id="last-name" type="text" formControlName="lastName" />
+      <input id="last-name" type="text" formControlName="endDate" />
     </form>
   </mat-card-content>
 </mat-card>

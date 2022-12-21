@@ -8,6 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ChipComponent implements OnInit {
   @Input('input') input: any;
   constructor() {}
-
+  remove() {}
   ngOnInit(): void {}
 }
