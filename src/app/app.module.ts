@@ -13,6 +13,7 @@ import { ReportingComponent } from './components/PageComponents/reporting/report
 import { TfrComponent } from './components/PageComponents/tfr/tfr.component';
 import { TfrCreationComponent } from './components/PageComponents/tfr-creation/tfr-creation.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChipComponent } from './components/common/chip/chip.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AlertsComponent,
     ReportingComponent,
     TfrComponent,
-    TfrCreationComponent
+    TfrCreationComponent,
+    ChipComponent
   ],
   imports: [
     ReactiveFormsModule,

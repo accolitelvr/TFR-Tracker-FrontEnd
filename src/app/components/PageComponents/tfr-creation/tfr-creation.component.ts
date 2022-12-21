@@ -14,7 +14,7 @@ export class TfrCreationComponent implements OnInit {
     endDate: new FormControl('')
   });
   constructor() { }
-
+  milestones = [{name:"milestone1"},{name:"milestone2"}];
   ngOnInit(): void {
   }
 
