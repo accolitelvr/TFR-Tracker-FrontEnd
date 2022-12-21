@@ -12,6 +12,7 @@ import { AlertsComponent } from './components/alerts/alerts.component';
 import { ReportingComponent } from './components/reporting/reporting.component';
 import { TfrComponent } from './components/tfr/tfr.component';
 import { TfrCreationComponent } from './components/tfr-creation/tfr-creation.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TfrCreationComponent } from './components/tfr-creation/tfr-creation.com
     TfrCreationComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

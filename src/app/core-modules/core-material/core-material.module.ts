@@ -15,6 +15,12 @@ import {
 import {
   MatToolbarModule
 } from '@angular/material/toolbar';
+import {
+  MatCardModule
+} from '@angular/material/card';
+import {
+  MatChipsModule
+} from '@angular/material/chips'
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,11 +30,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports:      [
     BrowserModule, FormsModule, FlexLayoutModule, BrowserAnimationsModule,
     MatIconModule, MatButtonModule, MatSidenavModule, MatToolbarModule,
-    CommonModule
+    CommonModule, MatCardModule, MatChipsModule
   ],
   exports:[
     FlexLayoutModule,
-    MatIconModule, MatButtonModule, MatSidenavModule, MatToolbarModule
+    MatIconModule, MatButtonModule, MatSidenavModule, MatToolbarModule, MatCardModule,
+    MatChipsModule
   ]
 })
 export class CoreMaterialModule { }

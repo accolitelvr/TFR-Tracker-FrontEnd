@@ -5,6 +5,7 @@ import { MilestonesComponent } from './components/milestones/milestones.componen
 import { PermissionsComponent } from './components/permissions/permissions.component';
 import { ReportingComponent } from './components/reporting/reporting.component';
 import { TfrComponent } from './components/tfr/tfr.component';
+import { TfrCreationComponent } from './components/tfr-creation/tfr-creation.component';
 import { TfrsComponent } from './components/tfrs/tfrs.component';
 import { RouteFull } from './RouteFull';
 
@@ -19,10 +20,10 @@ export class RoutesService {
     name:'TFRs',showOnNavigationBar:true,path:'tfrs',component: TfrsComponent
   },
   {
-    name:'Home',showOnNavigationBar:false,path:'tfr/:id',component: TfrComponent
+    name:'Home',showOnNavigationBar:false,path:'tfr',component: TfrCreationComponent
   },
   {
-    name:'Home',showOnNavigationBar:false,path:'tfr',component: TfrComponent
+    name:'Home',showOnNavigationBar:false,path:'tfr/:id',component: TfrComponent
   },
   {
     name:'Milestones',showOnNavigationBar:true,path:'milestones',component: MilestonesComponent
