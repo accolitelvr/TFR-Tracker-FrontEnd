@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RoutesService } from './routes.service';
+import { RoutesService } from './services/routes.service';
 
 @NgModule({
   imports: [RouterModule.forRoot(RoutesService.RouteList)],
