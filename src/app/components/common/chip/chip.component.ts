@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import { RemovalEmitterService } from 'src/app/services/removal-emitter.service';
 @Component({
   selector: 'app-chip',
   templateUrl: './chip.component.html',
@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ChipComponent implements OnInit {
   @Input('input') input: any;
-  constructor() {}
-  remove() {}
+  constructor(private removalEmitterService:RemovalEmitterService) {}
+  remove() {this.removalEmitterService.emitObj(this.input)}
   ngOnInit(): void {}
 }
