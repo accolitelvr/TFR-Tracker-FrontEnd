@@ -25,16 +25,16 @@ import { ChipComponent } from './components/common/chip/chip.component';
     ReportingComponent,
     TfrComponent,
     TfrCreationComponent,
-    ChipComponent
+    ChipComponent,
   ],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreMaterialModule
+    CoreMaterialModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
