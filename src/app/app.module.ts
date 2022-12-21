@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreMaterialModule } from './core-modules/core-material/core-material.module';
-import { HomeComponent } from './components/home/home.component';
-import { TfrsComponent } from './components/tfrs/tfrs.component';
-import { MilestonesComponent } from './components/milestones/milestones.component';
-import { AlertsComponent } from './components/alerts/alerts.component';
-import { ReportingComponent } from './components/reporting/reporting.component';
-import { TfrComponent } from './components/tfr/tfr.component';
-import { TfrCreationComponent } from './components/tfr-creation/tfr-creation.component';
+import { HomeComponent } from './components/PageComponents/home/home.component';
+import { TfrsComponent } from './components/PageComponents/tfrs/tfrs.component';
+import { MilestonesComponent } from './components/PageComponents/milestones/milestones.component';
+import { AlertsComponent } from './components/PageComponents/alerts/alerts.component';
+import { ReportingComponent } from './components/PageComponents/reporting/reporting.component';
+import { TfrComponent } from './components/PageComponents/tfr/tfr.component';
+import { TfrCreationComponent } from './components/PageComponents/tfr-creation/tfr-creation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
