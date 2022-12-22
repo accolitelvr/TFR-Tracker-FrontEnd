@@ -15,6 +15,7 @@ import { TfrCreationComponent } from './components/PageComponents/tfr-creation/t
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChipComponent } from './components/common/chip/chip.component';
 import { ChipEmitterService } from './services/chip-emitter.service';
+import { FormComponent } from './components/common/form/form.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ChipEmitterService } from './services/chip-emitter.service';
     TfrComponent,
     TfrCreationComponent,
     ChipComponent,
+    FormComponent,
   ],
   imports: [
     ReactiveFormsModule,
