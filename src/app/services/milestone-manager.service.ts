@@ -4,27 +4,27 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
   providedIn: 'root',
 })
 export class MilestoneManagerService {
-  Milestones: any[] = [];
+  milestones: any[] = [];
   selected: any = null;
   @Output() Update: EventEmitter<any> = new EventEmitter();
   getMilestones() {
-    return this.Milestones;
+    return this.milestones;
   }
-  setSelected(Milestone: any) {
-    this.selected = Milestone;
+  setSelected(milestone: any) {
+    this.selected = milestone;
     this.broadcastUpdate();
   }
   getSelected(): any {
     return this.selected;
   }
   remove(milestoneToRemove: any) {
-    this.Milestones = this.Milestones.filter(
+    this.milestones = this.milestones.filter(
       (value: any) => milestoneToRemove != value
     );
     this.updateRemoval(milestoneToRemove);
   }
   add(milestoneToAdd: any) {
-    this.Milestones.push(milestoneToAdd);
+    this.milestones.push(milestoneToAdd);
     this.broadcastUpdate();
   }
   updateRemoval(milestoneToRemove: any) {
@@ -36,6 +36,6 @@ export class MilestoneManagerService {
   saveMilestonesToServer() {}
   constructor() {}
   broadcastUpdate() {
-    this.Update.emit(this.Milestones);
+    this.Update.emit(this.milestones);
   }
 }
