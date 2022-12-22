@@ -15,14 +15,17 @@ export class TfrCreationComponent implements OnInit {
     startDate: new FormControl(''),
     endDate: new FormControl(''),
   });
+  milestones:any[]=this.milestoneManagerService.giveMilestones();
   selectedMilestone:any;
-  milestones = [{ name: 'milestone1' }, { name: 'milestone2' }];
   constructor(private chipEmitterService:ChipEmitterService,
               private milestoneManagerService:MilestoneManagerService) {}
   removalObserver = {next:((milestoneToRemove:any)=>this.milestoneManagerService.remove(milestoneToRemove))}
   selectionObserver = {next:((milestoneToSelect:any)=>{this.selectedMilestone=milestoneToSelect})}
+  updateObserver = {next:(()=>(this.milestones=this.milestoneManagerService.giveMilestones()))}
   ngOnInit(): void {
     this.chipEmitterService.ToRemove.subscribe(this.removalObserver);
     this.chipEmitterService.ToSelect.subscribe(this.selectionObserver);
+    this.milestoneManagerService.Update.subscribe(this.updateObserver);
+    this.milestoneManagerService.add({name:"hello"})
   }
 }
