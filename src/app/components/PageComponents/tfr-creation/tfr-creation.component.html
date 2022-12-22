@@ -1,9 +1,11 @@
 <mat-card>
   <mat-card-title> Add Milestone </mat-card-title>
   <mat-card-content>
-
     <mat-chip-list #chipList>
-      <app-chip *ngFor="let milestone of milestones" [value]="milestone"></app-chip>
+      <app-chip
+        *ngFor="let milestone of milestones"
+        [value]="milestone"
+      ></app-chip>
     </mat-chip-list>
 
     <form [formGroup]="milestoneForm" *ngIf="selectedMilestone">
@@ -16,6 +18,6 @@
       <label for="last-name">End Date: </label>
       <input id="last-name" type="text" formControlName="endDate" />
     </form>
-    {{this.selectedMilestone}}
+    {{ this.selectedMilestone }}
   </mat-card-content>
 </mat-card>

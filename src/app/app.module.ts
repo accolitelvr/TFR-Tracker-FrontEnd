@@ -27,7 +27,6 @@ import { ChipEmitterService } from './services/chip-emitter.service';
     TfrComponent,
     TfrCreationComponent,
     ChipComponent,
-
   ],
   imports: [
     ReactiveFormsModule,
