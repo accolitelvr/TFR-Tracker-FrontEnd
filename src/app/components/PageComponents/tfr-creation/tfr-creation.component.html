@@ -3,7 +3,7 @@
   <mat-card-content>
 
     <mat-chip-list #chipList>
-      <app-chip *ngFor="let milestone of milestones" [input]="milestone"></app-chip>
+      <app-chip *ngFor="let milestone of milestones" [value]="milestone"></app-chip>
     </mat-chip-list>
 
     <form [formGroup]="milestoneForm" *ngIf="selectedMilestone">

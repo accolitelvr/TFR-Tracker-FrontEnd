@@ -6,7 +6,7 @@ import { ChipEmitterService } from 'src/app/services/chip-emitter.service';
   styleUrls: ['./chip.component.scss'],
 })
 export class ChipComponent implements OnInit {
-  @Input('input') value: any;
+  @Input('value') value: any;
   isSelected: boolean = false;
   constructor(private chipEmitterService:ChipEmitterService) {}
   remove(input:any) {console.log(input);this.chipEmitterService.RemoveObj(this.value)}
