@@ -1,2 +1,2 @@
 <mat-chip removable=true selectable=true
-(removed)="remove()">{{input.name}} <mat-icon matChipRemove>cancel</mat-icon> </mat-chip>
+(removed)="remove()" (selectionChange)="select()" (selected)="isSelected">{{input.name}} <mat-icon matChipRemove>cancel</mat-icon> </mat-chip>

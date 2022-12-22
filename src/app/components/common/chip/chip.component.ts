@@ -7,7 +7,16 @@ import { ChipEmitterService } from 'src/app/services/chip-emitter.service';
 })
 export class ChipComponent implements OnInit {
   @Input('input') input: any;
-  constructor(private removalEmitterService:ChipEmitterService) {}
-  remove() {this.removalEmitterService.emitObj(this.input)}
+  isSelected: boolean = false;
+  constructor(private chipEmitterService:ChipEmitterService) {}
+  remove() {this.chipEmitterService.RemoveObj(this.input)}
   ngOnInit(): void {}
+  select() {
+    if (this.isSelected){
+      this.chipEmitterService.SelectObj(this.input);
+    }
+    else {
+      this.chipEmitterService.SelectObj(null);
+    }
+  }
 }

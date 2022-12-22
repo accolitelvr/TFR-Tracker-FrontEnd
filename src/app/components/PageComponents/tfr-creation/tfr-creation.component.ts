@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ChipEmitterService } from 'src/app/services/chip-emitter.service';
 
 @Component({
   selector: 'app-tfr-creation',
@@ -13,7 +14,11 @@ export class TfrCreationComponent implements OnInit {
     startDate: new FormControl(''),
     endDate: new FormControl(''),
   });
-  constructor() {}
   milestones = [{ name: 'milestone1' }, { name: 'milestone2' }];
-  ngOnInit(): void {}
+  constructor(private chipEmitterService:ChipEmitterService) {}
+  removalObserver = {next:((milestoneToRemove:any)=>{
+    this.milestones = this.milestones.filter((value)=>{return value!=milestoneToRemove})})}
+  ngOnInit(): void {
+    this.chipEmitterService.ToRemove.subscribe(this.removalObserver);
+  }
 }
