@@ -4,7 +4,7 @@ import { EventEmitter } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class RemovalEmitterService {
+export class ChipEmitterService {
   @Output() ToRemove: EventEmitter<any> = new EventEmitter();
   emitObj(ObjToRemove:any) {
       this.ToRemove.emit(ObjToRemove);

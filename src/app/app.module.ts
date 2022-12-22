@@ -14,7 +14,7 @@ import { TfrComponent } from './components/PageComponents/tfr/tfr.component';
 import { TfrCreationComponent } from './components/PageComponents/tfr-creation/tfr-creation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChipComponent } from './components/common/chip/chip.component';
-import { RemovalEmitterService } from './services/removal-emitter.service';
+import { ChipEmitterService } from './services/chip-emitter.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { RemovalEmitterService } from './services/removal-emitter.service';
     BrowserAnimationsModule,
     CoreMaterialModule,
   ],
-  providers: [RemovalEmitterService],
+  providers: [ChipEmitterService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
