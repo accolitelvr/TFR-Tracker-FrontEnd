@@ -12,7 +12,6 @@ export class ChipEmitterService {
   }
   SelectObj(ObjToSelect:any) {
     this.ToSelect.emit(ObjToSelect);
-    console.log()
 }
   constructor() { }
 }
