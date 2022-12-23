@@ -1,41 +1,42 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Milestone } from '../Milestone';
+import { ChipEmitterService } from './chip-emitter.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MilestoneManagerService {
-  milestones: any[] = [];
-  selected: any = null;
+  milestones: Milestone[] = [];
+  selected: Milestone | null = null;
   @Output() Update: EventEmitter<any> = new EventEmitter();
   getMilestones() {
     return this.milestones;
   }
-  setSelected(milestone: any) {
+  setSelected(milestone: Milestone) {
     this.selected = milestone;
     this.broadcastUpdate();
   }
   getSelected(): any {
     return this.selected;
   }
-  remove(milestoneToRemove: any) {
+  remove(milestoneToRemove: Milestone) {
     this.milestones = this.milestones.filter(
-      (value: any) => milestoneToRemove != value
+      (value: Milestone) => milestoneToRemove != value
     );
     this.updateRemoval(milestoneToRemove);
   }
-  add(milestoneToAdd: any) {
+  add(milestoneToAdd: Milestone) {
     this.milestones.push(milestoneToAdd);
     this.broadcastUpdate();
   }
-  updateRemoval(milestoneToRemove: any) {
+  updateRemoval(milestoneToRemove: Milestone) {
     if (milestoneToRemove == this.selected) {
       this.selected = null;
       this.broadcastUpdate();
     }
   }
-  saveMilestonesToServer() {}
-  constructor() {}
+  constructor(private chipEmitterService: ChipEmitterService) {}
   broadcastUpdate() {
-    this.Update.emit(this.milestones);
+    this.Update.emit();
   }
 }

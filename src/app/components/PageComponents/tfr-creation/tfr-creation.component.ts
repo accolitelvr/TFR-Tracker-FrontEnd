@@ -35,7 +35,6 @@ export class TfrCreationComponent implements OnInit {
   updateObserver = {
     next: () => {
       this.milestones = this.milestoneManagerService.getMilestones();
-      console.log(this.milestones);
       this.selectedMilestone = this.milestoneManagerService.getSelected();
       this.milestoneForm.setValue(this.selectedMilestone);
     },
@@ -47,8 +46,8 @@ export class TfrCreationComponent implements OnInit {
     this.milestoneManagerService.add({
       name: 'hello',
       description: 'trial',
-      startDate: '5thNov',
-      endDate: '6thNov',
+      startDate: new Date(),
+      endDate: new Date(),
     });
     console.log(this.milestoneForm.value);
   }
@@ -56,11 +55,11 @@ export class TfrCreationComponent implements OnInit {
     return this.milestoneForm.value;
   }
   addNew() {
-    this.milestoneManagerService.add({
+    this.milestoneManagerService.setSelected({
       name: 'example',
       description: '',
-      startDate: '',
-      endDate: '',
+      startDate: new Date(),
+      endDate: new Date(),
     });
   }
 }
