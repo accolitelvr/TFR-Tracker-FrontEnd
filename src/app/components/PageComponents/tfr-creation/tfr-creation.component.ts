@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ChipEmitterService } from 'src/app/services/chip-emitter.service';
 import { MilestoneManagerService } from 'src/app/services/milestone-manager.service';
 import { CoreMaterialModule } from 'src/app/core-modules/core-material/core-material.module';
+import { Milestone } from 'src/app/Milestone';
 
 @Component({
   selector: 'app-tfr-creation',
@@ -38,5 +39,8 @@ export class TfrCreationComponent implements OnInit {
   }
   selectNew() {
     this.milestoneManagerService.newSelected();
+  }
+  selectExisting(milestone: Milestone) {
+    this.milestoneManagerService.setSelected(milestone);
   }
 }
