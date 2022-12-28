@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ChipEmitterService } from 'src/app/services/chip-emitter.service';
 @Component({
   selector: 'app-chip',
@@ -8,13 +8,15 @@ import { ChipEmitterService } from 'src/app/services/chip-emitter.service';
 export class ChipComponent implements OnInit {
   @Input('value') value: any;
   isSelected: boolean = false;
+  @Output() selectEmitter = new EventEmitter<any>();
+  @Output() removeEmitter = new EventEmitter<any>();
+
   constructor(private chipEmitterService: ChipEmitterService) {}
   remove(input: any) {
-    this.chipEmitterService.RemoveObj(this.value);
+    this.selectEmitter.emit(this.value);
   }
   ngOnInit(): void {}
   click(event: any) {
-    console.log(event);
-    this.chipEmitterService.SelectObj(this.value);
+    this.removeEmitter.emit(this.value);
   }
 }
