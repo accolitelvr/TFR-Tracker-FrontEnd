@@ -13,10 +13,10 @@ export class ChipComponent implements OnInit {
 
   constructor(private chipEmitterService: ChipEmitterService) {}
   remove(input: any) {
-    this.selectEmitter.emit(this.value);
+    this.removeEmitter.emit(this.value);
   }
   ngOnInit(): void {}
   click(event: any) {
-    this.removeEmitter.emit(this.value);
+    this.selectEmitter.emit(this.value);
   }
 }

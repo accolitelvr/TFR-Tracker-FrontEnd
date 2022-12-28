@@ -4,6 +4,8 @@ import { ChipEmitterService } from 'src/app/services/chip-emitter.service';
 import { MilestoneManagerService } from 'src/app/services/milestone-manager.service';
 import { CoreMaterialModule } from 'src/app/core-modules/core-material/core-material.module';
 import { Milestone } from 'src/app/Milestone';
+import { identifierName } from '@angular/compiler';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-tfr-creation',
@@ -12,14 +14,15 @@ import { Milestone } from 'src/app/Milestone';
 })
 export class TfrCreationComponent implements OnInit {
   tfrid: number = 76839;
+  submittable: boolean = false;
   milestoneForm = new FormGroup({
-    name: new FormControl(''),
-    description: new FormControl(''),
-    startDate: new FormControl(''),
-    endDate: new FormControl(''),
+    name: new FormControl('', { nonNullable: true }),
+    description: new FormControl('', { nonNullable: true }),
+    startDate: new FormControl(new Date(), { nonNullable: true }),
+    endDate: new FormControl(new Date(), { nonNullable: true }),
   });
   milestones: any[] = this.milestoneManagerService.getMilestones();
-  selectedMilestone: any;
+  selectedMilestone: Milestone | null = null;
   constructor(
     private chipEmitterService: ChipEmitterService,
     private milestoneManagerService: MilestoneManagerService
@@ -28,19 +31,53 @@ export class TfrCreationComponent implements OnInit {
     next: () => {
       this.milestones = this.milestoneManagerService.getMilestones();
       this.selectedMilestone = this.milestoneManagerService.getSelected();
-      this.milestoneForm.setValue(this.selectedMilestone);
+      this.milestoneForm.setValue(this.ConvertMilestoneToFormData());
+      this.submittable = this.milestoneManagerService.submittable();
     },
   };
   ngOnInit(): void {
     this.milestoneManagerService.Update.subscribe(this.updateObserver);
   }
-  getFormMilestone() {
-    return this.milestoneForm.value;
+  getFormMilestone(): Milestone | null {
+    if (this.selectedMilestone != null) {
+      let { id, toRemove } = this.selectedMilestone;
+      return {
+        id: id,
+        toRemove: toRemove,
+        ...this.milestoneForm.getRawValue(),
+      };
+    }
+    return null;
+  }
+  ConvertMilestoneToFormData() {
+    if (this.selectedMilestone != null) {
+      let { id, toRemove, ...FormOut } = this.selectedMilestone;
+      return FormOut;
+    } else {
+      return {
+        name: '',
+        description: '',
+        startDate: new Date(),
+        endDate: new Date(),
+      };
+    }
   }
   selectNew() {
     this.milestoneManagerService.selectNewMilestone();
   }
   selectExisting(milestone: Milestone) {
+    this.milestoneManagerService.setSelected(milestone);
+  }
+  discardSelected() {
+    this.milestoneManagerService.setSelected(null);
+  }
+  saveSelected() {
+    this.milestoneManagerService.saveMilestone(this.getFormMilestone());
+  }
+  removeMilestone(milestone: Milestone) {
+    this.milestoneManagerService.updateToRemove(milestone);
+  }
+  selectMilestone(milestone: Milestone) {
     this.milestoneManagerService.setSelected(milestone);
   }
 }

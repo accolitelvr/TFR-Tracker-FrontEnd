@@ -7,6 +7,8 @@
         <app-chip
           *ngFor="let milestone of milestones"
           [value]="milestone"
+          (removeEmitter)="removeMilestone($event)"
+          (selectEmitter)="selectMilestone($event)"
         ></app-chip>
       </mat-chip-list>
       <button (click)="selectNew()">add tfr</button>
@@ -38,8 +40,9 @@
         <input id="last-name" type="text" formControlName="endDate" />
       </div>
 
-      <button *ngIf>save milestone</button> <button>discard</button>
+      <button (click)="saveSelected()">save milestone</button>
+      <button (click)="discardSelected()">discard</button>
     </form>
-    <button>submit</button>
+    <button *ngIf="submittable && !selectedMilestone">submit</button>
   </mat-card-content>
 </mat-card>

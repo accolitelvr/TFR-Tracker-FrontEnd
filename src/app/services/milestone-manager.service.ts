@@ -28,11 +28,24 @@ export class MilestoneManagerService {
     this.milestones.push(milestone);
     this.broadcastUpdate();
   }
-  saveMilestone(milestoneToAdd: Milestone) {
-    this.remove(milestoneToAdd);
-    this.add(milestoneToAdd);
-    this.setSelected(null);
+  saveMilestone(milestoneToAdd: Milestone | null) {
+    if (milestoneToAdd != null) {
+      this.remove(milestoneToAdd);
+      this.add(milestoneToAdd);
+      this.setSelected(null);
+    }
     this.broadcastUpdate();
+  }
+
+  submittable() {
+    if (this.getMilestones().length >= 1) {
+      console.log(this.milestones);
+      console.log(true);
+      return true;
+    }
+    console.log(false);
+    console.log(this.milestones);
+    return false;
   }
 
   selectNewMilestone() {
@@ -47,23 +60,18 @@ export class MilestoneManagerService {
     };
     this.broadcastUpdate();
   }
-  private milestoneExists(milestoneToCheck: Milestone): boolean {
-    return !this.milestones.every(
-      (milestone) => !(milestone.id == milestoneToCheck.id)
-    );
-  }
   private add(milestoneToAdd: Milestone) {
     this.milestones.push(milestoneToAdd);
   }
   private remove(milestoneToRemove: Milestone) {
     this.milestones = this.milestones.filter(
-      (value: Milestone) => milestoneToRemove.id == value.id
+      (value: Milestone) => milestoneToRemove.id != value.id
     );
   }
   private broadcastUpdate() {
     this.Update.emit();
   }
   private generateIdOfNew() {
-    return Math.min(0, ...this.milestones.map((milestone) => milestone.id));
+    return Math.min(0, ...this.milestones.map((milestone) => milestone.id)) - 1;
   }
 }
