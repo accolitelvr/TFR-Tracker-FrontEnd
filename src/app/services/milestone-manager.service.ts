@@ -1,6 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Milestone } from '../Milestone';
-import { ChipEmitterService } from './chip-emitter.service';
 
 @Injectable({
   providedIn: 'root',

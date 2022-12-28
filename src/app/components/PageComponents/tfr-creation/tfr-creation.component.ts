@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ChipEmitterService } from 'src/app/services/chip-emitter.service';
 import { MilestoneManagerService } from 'src/app/services/milestone-manager.service';
 import { CoreMaterialModule } from 'src/app/core-modules/core-material/core-material.module';
 import { Milestone } from 'src/app/Milestone';
@@ -23,10 +22,7 @@ export class TfrCreationComponent implements OnInit {
   });
   milestones: any[] = this.milestoneManagerService.getMilestones();
   selectedMilestone: Milestone | null = null;
-  constructor(
-    private chipEmitterService: ChipEmitterService,
-    private milestoneManagerService: MilestoneManagerService
-  ) {}
+  constructor(private milestoneManagerService: MilestoneManagerService) {}
   updateObserver = {
     next: () => {
       this.milestones = this.milestoneManagerService.getMilestones();

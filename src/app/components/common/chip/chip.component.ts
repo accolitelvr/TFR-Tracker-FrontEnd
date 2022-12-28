@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ChipEmitterService } from 'src/app/services/chip-emitter.service';
 @Component({
   selector: 'app-chip',
   templateUrl: './chip.component.html',
@@ -11,7 +10,6 @@ export class ChipComponent implements OnInit {
   @Output() selectEmitter = new EventEmitter<any>();
   @Output() removeEmitter = new EventEmitter<any>();
 
-  constructor(private chipEmitterService: ChipEmitterService) {}
   remove(input: any) {
     this.removeEmitter.emit(this.value);
   }

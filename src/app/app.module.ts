@@ -14,7 +14,6 @@ import { TfrComponent } from './components/PageComponents/tfr/tfr.component';
 import { TfrCreationComponent } from './components/PageComponents/tfr-creation/tfr-creation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChipComponent } from './components/common/chip/chip.component';
-import { ChipEmitterService } from './services/chip-emitter.service';
 import { FormComponent } from './components/common/form/form.component';
 
 @NgModule({
@@ -37,7 +36,7 @@ import { FormComponent } from './components/common/form/form.component';
     BrowserAnimationsModule,
     CoreMaterialModule,
   ],
-  providers: [ChipEmitterService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
