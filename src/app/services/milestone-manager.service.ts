@@ -10,7 +10,9 @@ export class MilestoneManagerService {
   selected: Milestone | null = null;
   @Output() Update: EventEmitter<any> = new EventEmitter();
   getMilestones() {
-    return this.milestones;
+    return this.milestones.filter(
+      (milestone: Milestone) => milestone.toRemove == false
+    );
   }
   setSelected(milestone: Milestone) {
     this.selected = milestone;
@@ -21,19 +23,18 @@ export class MilestoneManagerService {
   }
   remove(milestoneToRemove: Milestone) {
     this.milestones = this.milestones.filter(
-      (value: Milestone) => milestoneToRemove != value
+      (value: Milestone) => (milestoneToRemove.id = value.id)
     );
-    this.updateRemoval(milestoneToRemove);
+    milestoneToRemove.toRemove = true;
+    this.milestones.push(milestoneToRemove);
+    this.broadcastUpdate();
   }
   add(milestoneToAdd: Milestone) {
     this.milestones.push(milestoneToAdd);
     this.broadcastUpdate();
   }
-  updateRemoval(milestoneToRemove: Milestone) {
-    if (milestoneToRemove == this.selected) {
-      this.selected = null;
-      this.broadcastUpdate();
-    }
+  newSelected() {
+    this.selected;
   }
   constructor(private chipEmitterService: ChipEmitterService) {}
   broadcastUpdate() {

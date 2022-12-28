@@ -43,23 +43,12 @@ export class TfrCreationComponent implements OnInit {
     this.chipEmitterService.ToRemove.subscribe(this.removalObserver);
     this.chipEmitterService.ToSelect.subscribe(this.selectionObserver);
     this.milestoneManagerService.Update.subscribe(this.updateObserver);
-    this.milestoneManagerService.add({
-      name: 'hello',
-      description: 'trial',
-      startDate: new Date(),
-      endDate: new Date(),
-    });
     console.log(this.milestoneForm.value);
   }
   getFormMilestone() {
     return this.milestoneForm.value;
   }
-  addNew() {
-    this.milestoneManagerService.setSelected({
-      name: 'example',
-      description: '',
-      startDate: new Date(),
-      endDate: new Date(),
-    });
+  selectNew() {
+    this.milestoneManagerService.newSelected();
   }
 }

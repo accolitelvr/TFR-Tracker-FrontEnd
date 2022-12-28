@@ -3,4 +3,6 @@ export interface Milestone {
   description: string;
   startDate: Date;
   endDate: Date;
+  id: number;
+  toRemove: boolean;
 }
