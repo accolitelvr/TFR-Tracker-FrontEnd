@@ -10,23 +10,29 @@
           (removeEmitter)="removeMilestone($event)"
           (selectEmitter)="selectMilestone($event)"
         ></app-chip>
+        <mat-chip (click)="selectNew()">+</mat-chip>
       </mat-chip-list>
-      <button (click)="selectNew()">add tfr</button>
     </div>
 
     <form [formGroup]="milestoneForm" *ngIf="selectedMilestone">
-      <div>
-        <label for="first-name">Milestone Name: </label>
-      </div>
-      <div>
-        <input id="first-name" type="text" formControlName="name" />
-      </div>
-      <div>
-        <label for="last-name">Milestone Description: </label>
-      </div>
-      <div>
-        <input id="last-name" type="text" formControlName="description" />
-      </div>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Milestone Name: "
+          class="full-width"
+          type="text"
+          formControlName="name"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <textarea
+          matInput
+          placeholder="Milestone Description: "
+          type="text"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
       <div>
         <label for="start-date">Start Date: </label>
       </div>
@@ -40,9 +46,11 @@
         <input id="last-name" type="text" formControlName="endDate" />
       </div>
 
-      <button (click)="saveSelected()">save milestone</button>
-      <button (click)="discardSelected()">discard</button>
+      <button mat-button (click)="saveSelected()">save milestone</button>
+      <button mat-button (click)="discardSelected()">discard</button>
     </form>
-    <button *ngIf="submittable && !selectedMilestone">submit</button>
+    <button mat-button [disabled]="!(submittable && !selectedMilestone)">
+      submit
+    </button>
   </mat-card-content>
 </mat-card>
