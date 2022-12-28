@@ -14,30 +14,56 @@ export class MilestoneManagerService {
       (milestone: Milestone) => milestone.toRemove == false
     );
   }
-  setSelected(milestone: Milestone) {
+  setSelected(milestone: Milestone | null) {
     this.selected = milestone;
     this.broadcastUpdate();
   }
   getSelected(): any {
     return this.selected;
   }
-  remove(milestoneToRemove: Milestone) {
-    this.milestones = this.milestones.filter(
-      (value: Milestone) => (milestoneToRemove.id = value.id)
+
+  updateToRemove(milestone: Milestone) {
+    this.remove(milestone);
+    milestone.toRemove = true;
+    this.milestones.push(milestone);
+    this.broadcastUpdate();
+  }
+  saveMilestone(milestoneToAdd: Milestone) {
+    this.remove(milestoneToAdd);
+    this.add(milestoneToAdd);
+    this.setSelected(null);
+    this.broadcastUpdate();
+  }
+
+  selectNewMilestone() {
+    let idOfNew: number = this.generateIdOfNew();
+    this.selected = {
+      name: '',
+      startDate: new Date(),
+      endDate: new Date(),
+      description: '',
+      id: idOfNew,
+      toRemove: false,
+    };
+    this.broadcastUpdate();
+  }
+  private milestoneExists(milestoneToCheck: Milestone): boolean {
+    return !this.milestones.every(
+      (milestone) => !(milestone.id == milestoneToCheck.id)
     );
-    milestoneToRemove.toRemove = true;
-    this.milestones.push(milestoneToRemove);
-    this.broadcastUpdate();
   }
-  add(milestoneToAdd: Milestone) {
+  private add(milestoneToAdd: Milestone) {
     this.milestones.push(milestoneToAdd);
-    this.broadcastUpdate();
   }
-  newSelected() {
-    this.selected;
+  private remove(milestoneToRemove: Milestone) {
+    this.milestones = this.milestones.filter(
+      (value: Milestone) => milestoneToRemove.id == value.id
+    );
   }
-  constructor(private chipEmitterService: ChipEmitterService) {}
-  broadcastUpdate() {
+  private broadcastUpdate() {
     this.Update.emit();
+  }
+  private generateIdOfNew() {
+    return Math.min(0, ...this.milestones.map((milestone) => milestone.id));
   }
 }

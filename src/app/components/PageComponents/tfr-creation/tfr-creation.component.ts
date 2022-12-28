@@ -38,7 +38,7 @@ export class TfrCreationComponent implements OnInit {
     return this.milestoneForm.value;
   }
   selectNew() {
-    this.milestoneManagerService.newSelected();
+    this.milestoneManagerService.selectNewMilestone();
   }
   selectExisting(milestone: Milestone) {
     this.milestoneManagerService.setSelected(milestone);
