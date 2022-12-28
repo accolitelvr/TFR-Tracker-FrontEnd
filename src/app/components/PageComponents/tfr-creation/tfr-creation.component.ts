@@ -23,15 +23,6 @@ export class TfrCreationComponent implements OnInit {
     private chipEmitterService: ChipEmitterService,
     private milestoneManagerService: MilestoneManagerService
   ) {}
-  removalObserver = {
-    next: (milestoneToRemove: any) =>
-      this.milestoneManagerService.remove(milestoneToRemove),
-  };
-  selectionObserver = {
-    next: (milestoneToSelect: any) => {
-      this.milestoneManagerService.setSelected(milestoneToSelect);
-    },
-  };
   updateObserver = {
     next: () => {
       this.milestones = this.milestoneManagerService.getMilestones();
@@ -40,10 +31,7 @@ export class TfrCreationComponent implements OnInit {
     },
   };
   ngOnInit(): void {
-    this.chipEmitterService.ToRemove.subscribe(this.removalObserver);
-    this.chipEmitterService.ToSelect.subscribe(this.selectionObserver);
     this.milestoneManagerService.Update.subscribe(this.updateObserver);
-    console.log(this.milestoneForm.value);
   }
   getFormMilestone() {
     return this.milestoneForm.value;

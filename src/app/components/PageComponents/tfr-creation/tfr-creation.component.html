@@ -1,15 +1,16 @@
 <mat-card>
-  <mat-card-title>
-    Add Milestone <button (click)="addNew()">add tfr</button>
-  </mat-card-title>
+  <mat-card-title> Add Milestone </mat-card-title>
   <mat-card-subtitle> TFR ID: {{ tfrid }}</mat-card-subtitle>
   <mat-card-content>
-    <mat-chip-list #chipList>
-      <app-chip
-        *ngFor="let milestone of milestones"
-        [value]="milestone"
-      ></app-chip>
-    </mat-chip-list>
+    <div *ngIf="!selectedMilestone">
+      <mat-chip-list #chipList>
+        <app-chip
+          *ngFor="let milestone of milestones"
+          [value]="milestone"
+        ></app-chip>
+      </mat-chip-list>
+      <button (click)="selectNew()">add tfr</button>
+    </div>
 
     <form [formGroup]="milestoneForm" *ngIf="selectedMilestone">
       <div>
@@ -37,7 +38,8 @@
         <input id="last-name" type="text" formControlName="endDate" />
       </div>
 
-      <button>submit milestones</button>
+      <button *ngIf>save milestone</button> <button>discard</button>
     </form>
+    <button>submit</button>
   </mat-card-content>
 </mat-card>
