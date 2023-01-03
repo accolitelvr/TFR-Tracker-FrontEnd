@@ -33,18 +33,26 @@
           formControlName="description"
         ></textarea>
       </mat-form-field>
-      <div>
-        <label for="start-date">Start Date: </label>
-      </div>
-      <div>
-        <input id="start-date" type="text" formControlName="startDate" />
-      </div>
-      <div>
-        <label for="last-name">End Date: </label>
-      </div>
-      <div>
-        <input id="last-name" type="text" formControlName="endDate" />
-      </div>
+      <mat-form-field class="full-width">
+        <mat-label>Start date: Delivery Date</mat-label>
+        <mat-date-range-input [rangePicker]="myRangePicker">
+          <input
+            matStartDate
+            formControlName="startDate"
+            placeholder="Start date"
+          />
+          <input
+            matEndDate
+            formControlName="endDate"
+            placeholder="Delivery Date"
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="myRangePicker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #myRangePicker></mat-date-range-picker>
+      </mat-form-field>
 
       <button mat-button (click)="saveSelected()">save milestone</button>
       <button mat-button (click)="discardSelected()">discard</button>

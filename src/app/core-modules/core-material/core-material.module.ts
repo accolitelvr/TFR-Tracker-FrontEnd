@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const modules = [
   BrowserModule,
@@ -27,6 +29,8 @@ const modules = [
   MatChipsModule,
   MatInputModule,
   MatFormFieldModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
 
 @NgModule({
