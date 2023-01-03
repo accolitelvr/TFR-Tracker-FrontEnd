@@ -13,11 +13,9 @@ export class ProjectManagerService {
   } = { startDate: new Date(), endDate: new Date('01/22/2023'), id: 23 };
   constructor() {}
   getStartDate(): Date {
-    console.log(this.Project.startDate);
     return this.Project.startDate;
   }
   getEndDate(): Date {
-    console.log(this.Project.endDate);
     return this.Project.endDate;
   }
   getId(): number {
