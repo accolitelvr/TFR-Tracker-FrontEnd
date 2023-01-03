@@ -19,7 +19,6 @@
         <input
           matInput
           placeholder="Milestone Name: "
-          class="full-width"
           type="text"
           formControlName="name"
         />
@@ -54,10 +53,18 @@
         <mat-date-range-picker #myRangePicker></mat-date-range-picker>
       </mat-form-field>
 
-      <button mat-button (click)="saveSelected()">save milestone</button>
-      <button mat-button (click)="discardSelected()">discard</button>
+      <button mat-button type="button" (click)="saveSelected()">
+        save milestone
+      </button>
+      <button mat-button type="button" (click)="discardSelected()">
+        discard
+      </button>
     </form>
-    <button mat-button [disabled]="!(submittable && !selectedMilestone)">
+    <button
+      type="button"
+      mat-button
+      [disabled]="!(submittable && !selectedMilestone)"
+    >
       submit
     </button>
   </mat-card-content>
