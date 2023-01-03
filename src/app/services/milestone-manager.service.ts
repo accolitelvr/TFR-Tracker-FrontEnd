@@ -38,12 +38,8 @@ export class MilestoneManagerService {
 
   submittable() {
     if (this.getMilestones().length >= 1) {
-      console.log(this.milestones);
-      console.log(true);
       return true;
     }
-    console.log(false);
-    console.log(this.milestones);
     return false;
   }
 
