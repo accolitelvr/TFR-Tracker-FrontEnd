@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Milestone } from '../Milestone';
+import { ProjectManagerService } from './project-manager.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,7 @@ export class MilestoneManagerService {
   milestones: Milestone[] = [];
   selected: Milestone | null = null;
   @Output() Update: EventEmitter<any> = new EventEmitter();
+  constructor(private projectManagerService: ProjectManagerService) {}
   getMilestones() {
     return this.milestones.filter(
       (milestone: Milestone) => milestone.toRemove == false
@@ -55,6 +57,10 @@ export class MilestoneManagerService {
     };
     this.broadcastUpdate();
   }
+  submitMilestones(): boolean {
+    return this.projectManagerService.setMilestones(this.milestones);
+  }
+
   private add(milestoneToAdd: Milestone) {
     this.milestones.push(milestoneToAdd);
   }

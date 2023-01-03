@@ -12,7 +12,14 @@ import { throwError } from 'rxjs';
   styleUrls: ['./tfr-creation.component.scss'],
 })
 export class TfrCreationComponent implements OnInit {
-  tfrid: number = 76839;
+  constructor(
+    private milestoneManagerService: MilestoneManagerService,
+    private projectManagerService: ProjectManagerService
+  ) {
+    this.projectStartDate = this.projectManagerService.getStartDate();
+    this.projectEndDate = this.projectManagerService.getEndDate();
+    this.tfrid = this.projectManagerService.getId();
+  }
   submittable: boolean = false;
   milestoneForm = new FormGroup({
     name: new FormControl('', { nonNullable: true }),
@@ -57,6 +64,13 @@ export class TfrCreationComponent implements OnInit {
         endDate: new Date(),
       };
     }
+  }
+
+  getMinDate() {
+    return this.projectManagerService.getStartDate();
+  }
+  getMaxDate() {
+    return this.projectManagerService.getEndDate();
   }
   selectNew() {
     this.milestoneManagerService.selectNewMilestone();
