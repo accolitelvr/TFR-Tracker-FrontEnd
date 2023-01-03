@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MilestoneManagerService } from 'src/app/services/milestone-manager.service';
-import { CoreMaterialModule } from 'src/app/core-modules/core-material/core-material.module';
 import { Milestone } from 'src/app/Milestone';
-import { identifierName } from '@angular/compiler';
-import { throwError } from 'rxjs';
+import { ProjectManagerService } from 'src/app/services/project-manager.service';
 
 @Component({
   selector: 'app-tfr-creation',
@@ -20,16 +18,32 @@ export class TfrCreationComponent implements OnInit {
     this.projectEndDate = this.projectManagerService.getEndDate();
     this.tfrid = this.projectManagerService.getId();
   }
-  submittable: boolean = false;
-  milestoneForm = new FormGroup({
-    name: new FormControl('', { nonNullable: true }),
-    description: new FormControl('', { nonNullable: true }),
-    startDate: new FormControl(new Date(), { nonNullable: true }),
-    endDate: new FormControl(new Date(), { nonNullable: true }),
-  });
+  @Output() nextStepEmitter = new EventEmitter<boolean>();
+  projectStartDate: Date;
+  projectEndDate: Date;
+  tfrid: number;
   milestones: any[] = this.milestoneManagerService.getMilestones();
   selectedMilestone: Milestone | null = null;
-  constructor(private milestoneManagerService: MilestoneManagerService) {}
+  submittable: boolean = false;
+  milestoneForm = new FormGroup({
+    name: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    description: new FormControl('', {
+      nonNullable: true,
+    }),
+    startDate: new FormControl<Date>(
+      this.projectManagerService.getStartDate(),
+      {
+        nonNullable: true,
+        validators: [Validators.required],
+      }
+    ),
+    endDate: new FormControl<Date>(this.projectManagerService.getStartDate(), {
+      nonNullable: true,
+    }),
+  });
   updateObserver = {
     next: () => {
       this.milestones = this.milestoneManagerService.getMilestones();
@@ -89,5 +103,11 @@ export class TfrCreationComponent implements OnInit {
   }
   selectMilestone(milestone: Milestone) {
     this.milestoneManagerService.setSelected(milestone);
+  }
+  submitMilestones() {
+    let hasSucceeded = this.milestoneManagerService.submitMilestones();
+    if (hasSucceeded) {
+      this.nextStepEmitter.emit(true);
+    }
   }
 }
