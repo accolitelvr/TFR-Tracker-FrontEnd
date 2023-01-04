@@ -39,6 +39,7 @@
           [rangePicker]="myRangePicker"
           [min]="getMinDate()"
           [max]="getMaxDate()"
+          required
         >
           <input
             matStartDate
@@ -56,14 +57,20 @@
           [for]="myRangePicker"
         ></mat-datepicker-toggle>
         <mat-date-range-picker #myRangePicker></mat-date-range-picker>
-        <mat-error>Dates must be within project timeframe</mat-error>
+        <mat-error>Both dates must be within project timeframe</mat-error>
       </mat-form-field>
+      <div></div>
 
-      <button mat-button type="button" (click)="saveSelected()">
-        save milestone
-      </button>
       <button mat-button type="button" (click)="discardSelected()">
         discard
+      </button>
+      <button
+        mat-button
+        type="button"
+        (click)="saveSelected()"
+        [disabled]="milestoneForm.invalid"
+      >
+        save milestone
       </button>
     </form>
     <button

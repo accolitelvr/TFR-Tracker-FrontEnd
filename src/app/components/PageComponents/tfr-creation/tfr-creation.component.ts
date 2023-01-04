@@ -40,7 +40,7 @@ export class TfrCreationComponent implements OnInit {
         validators: [Validators.required],
       }
     ),
-    endDate: new FormControl<Date>(this.projectManagerService.getStartDate(), {
+    endDate: new FormControl<Date>(this.projectManagerService.getEndDate(), {
       nonNullable: true,
     }),
   });

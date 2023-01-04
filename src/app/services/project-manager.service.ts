@@ -10,7 +10,11 @@ export class ProjectManagerService {
     endDate: Date;
     id: number;
     milestones?: Milestone[];
-  } = { startDate: new Date(), endDate: new Date('01/22/2023'), id: 23 };
+  } = {
+    startDate: new Date('01/15/2023'),
+    endDate: new Date('01/22/2023'),
+    id: 23,
+  };
   constructor() {}
   getStartDate(): Date {
     return this.Project.startDate;
