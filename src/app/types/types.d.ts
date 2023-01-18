@@ -26,6 +26,17 @@ export interface Milestone {
   tracker?: Tracker;
 }
 
+export interface cleanedMilestone {
+  id?: number;
+  project_id: number;
+  description: string;
+  start_date: Date;
+  delivery_date: Date;
+  acceptance_date: Date;
+  is_deleted: Boolean;
+  tracker?: Tracker;
+}
+
 export interface Tracker {
   milestone_id: number;
   project_id: number;

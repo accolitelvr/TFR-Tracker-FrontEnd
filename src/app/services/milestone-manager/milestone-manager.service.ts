@@ -1,6 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Milestone } from 'src/app/types/types';
-import { TfrManagementService } from 'src/app/services/tfr-management/tfr-management.service';
+import { cleanedMilestone, Milestone } from 'src/app/types/types';
 import { HttpClient } from '@angular/common/http';
 import { APPCONSTANTS } from 'src/app/shared/app.constants';
 import { Observable } from 'rxjs';
@@ -12,10 +11,7 @@ export class MilestoneManagerService {
   milestones: Milestone[] = [];
   selected: Milestone | null = null;
   @Output() Update: EventEmitter<any> = new EventEmitter();
-  constructor(
-    private projectManagerService: TfrManagementService,
-    private httpClient: HttpClient
-  ) {}
+  constructor(private httpClient: HttpClient) {}
   get getMilestones() {
     return this.milestones;
   }
@@ -37,6 +33,7 @@ export class MilestoneManagerService {
     this.milestones.push(milestone);
     this.broadcastUpdate();
   }
+
   saveMilestone(milestoneToAdd: Milestone | null) {
     if (milestoneToAdd != null) {
       this.remove(milestoneToAdd);
@@ -52,12 +49,7 @@ export class MilestoneManagerService {
     }
     return false;
   }
-  resetMilestones() {
-    this.milestones = this.projectManagerService.getMilestones
-      ? this.projectManagerService.getMilestones
-      : [];
-    this.broadcastUpdate();
-  }
+
   selectNewMilestone(projectId: number | undefined) {
     let idOfNew: number = this.generateIdOfNew();
     if (projectId != undefined) {
@@ -75,6 +67,7 @@ export class MilestoneManagerService {
     }
     this.broadcastUpdate();
   }
+
   putMilestones(projectId: number | undefined): Observable<{}> {
     let putMilestoneUrl =
       APPCONSTANTS.APICONSTANTS.BASE_URL +
@@ -86,10 +79,10 @@ export class MilestoneManagerService {
     });
   }
 
-  private get getMilestonesForPut() {
+  get getMilestonesForPut(): cleanedMilestone[] {
     //milestones need to have negative temp id's stripped for sending to db.
     let milestones = this.getMilestones;
-    return milestones.map((milestone) => {
+    return milestones.map((milestone: Milestone) => {
       if (milestone.id > 0) {
         return milestone;
       }
@@ -101,15 +94,26 @@ export class MilestoneManagerService {
   private add(milestoneToAdd: Milestone) {
     this.milestones.push(milestoneToAdd);
   }
+
   private remove(milestoneToRemove: Milestone) {
     this.milestones = this.milestones.filter(
       (value: Milestone) => milestoneToRemove.id != value.id
     );
   }
+
   private broadcastUpdate() {
     this.Update.emit();
   }
-  private generateIdOfNew() {
-    return Math.min(0, ...this.milestones.map((milestone) => milestone.id)) - 1;
+
+  private generateIdOfNew(): number {
+    let tempIdUpperLimit = 0;
+    let lowestMilestoneId = Math.min(
+      ...this.milestones.map((milestone) => milestone.id)
+    );
+    let minOfLimitAndMilestoneIds = Math.min(
+      lowestMilestoneId,
+      tempIdUpperLimit
+    );
+    return minOfLimitAndMilestoneIds - 1;
   }
 }
