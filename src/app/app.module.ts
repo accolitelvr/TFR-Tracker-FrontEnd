@@ -39,8 +39,8 @@ import { MilestoneTableComponent } from './components/milestone-table/milestone-
 import { TfrCreationDialogComponent } from './components/tfr-creation-dialog/tfr-creation-dialog.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ChipComponent } from './components/chip/chip.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
